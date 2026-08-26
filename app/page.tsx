@@ -184,11 +184,13 @@ const content = {
   },
 } as const;
 
+const assetPath = (path: string) => `${import.meta.env.BASE_URL ?? '/'}${path.replace(/^\/+/, '')}`;
+
 const athleteImages = [
-  '/images/ali-handstand-blocks.jpg',
-  '/images/ali-handstand.jpg',
-  '/images/ali-dip.jpg',
-  '/images/ali-hang.jpg',
+  assetPath('/images/ali-handstand-blocks.jpg'),
+  assetPath('/images/ali-handstand.jpg'),
+  assetPath('/images/ali-dip.jpg'),
+  assetPath('/images/ali-hang.jpg'),
 ];
 
 export default function Home() {
@@ -301,7 +303,7 @@ export default function Home() {
   const toggleSound = async () => {
     if (!soundRef.current) {
       const { Howl } = await import('howler');
-      soundRef.current = new Howl({ src: ['/audio/go-time.m4a'], format: ['m4a'], loop: true, volume: 0, html5: true });
+      soundRef.current = new Howl({ src: [assetPath('/audio/go-time.m4a')], format: ['m4a'], loop: true, volume: 0, html5: true });
     }
     const sound = soundRef.current;
     if (soundOn) {
@@ -359,7 +361,7 @@ export default function Home() {
         </div>
         <div className="hero-person">
           <div className="hero-person-halo" />
-          <img src="/images/ali-hero-transparent-v3.png" alt={isFa ? 'پرتره تمام‌قد علیرضا اورعی' : 'Full-length portrait of Ali Orei'} />
+          <img src={assetPath('/images/ali-hero-transparent-v3.png')} alt={isFa ? 'پرتره تمام‌قد علیرضا اورعی' : 'Full-length portrait of Ali Orei'} />
           <span className="hero-vertical">HIGH PERFORMANCE CREATOR</span>
         </div>
         <a className="scroll-cue" href="#manifesto"><i>↓</i><span>{t.scroll}</span></a>
@@ -380,7 +382,7 @@ export default function Home() {
 
       <section className="about section" id="about">
         <div className="about-media reveal">
-          <div className="image-shell image-shell--portrait"><img className="parallax-image" src="/images/ali-heic.png" alt={isFa ? 'پرتره علیرضا در نور طبیعی' : 'Ali in natural light'} /></div>
+          <div className="image-shell image-shell--portrait"><img className="parallax-image" src={assetPath('/images/ali-heic.png')} alt={isFa ? 'پرتره علیرضا در نور طبیعی' : 'Ali in natural light'} /></div>
           <span>IDENTITY / 001</span>
         </div>
         <div className="about-copy">
@@ -511,7 +513,7 @@ export default function Home() {
       </section>
 
       <section className="contact section" id="contact">
-        <div className="contact-photo reveal"><img className="parallax-image" src="/images/ali-athlete-portrait.jpg" alt={isFa ? 'پرتره ورزشی علیرضا' : 'Athletic portrait of Ali'} /></div>
+        <div className="contact-photo reveal"><img className="parallax-image" src={assetPath('/images/ali-athlete-portrait.jpg')} alt={isFa ? 'پرتره ورزشی علیرضا' : 'Athletic portrait of Ali'} /></div>
         <div className="contact-copy">
           <p className="section-kicker reveal">{t.contactKicker}</p>
           <h2 className="section-title reveal">{t.contactTitle}</h2>
